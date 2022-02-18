@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useForm } from "react-hook-form";
 import styled from "styled-components";
-import { yupResolver } from "@hookform/resolvers";
+import { yupResolver } from "@hookform/resolvers/yup";
 import * as yup from "yup";
 
 const schema = yup
@@ -19,12 +19,16 @@ const AddTask = () => {
     register,
     handleSubmit,
     watch,
+    reset,
     formState: { errors },
   } = useForm({
     resolver: yupResolver(schema),
   });
 
-  const onSubmit = (data) => console.log(watch(data));
+  const onSubmit = (data) => {
+    console.log(watch(data));
+    reset();
+  };
 
   return (
     <>
@@ -32,12 +36,12 @@ const AddTask = () => {
         <FormControl>
           <label>Title</label>
           <input {...register("Title")} />
-          <p>{errors.Title?.message}</p>
+          <P>{errors.Title?.message}</P>
         </FormControl>
         <FormControl>
           <label>Body</label>
           <input {...register("Body")} />
-          <p>{errors.Body?.message}</p>
+          <P>{errors.Body?.message}</P>
         </FormControl>
         <InputButton
           type="submit"
@@ -87,6 +91,12 @@ const InputButton = styled.input`
     outline: none;
     color: white;
   }
+`;
+
+const P = styled.p`
+  color: red;
+  font-size: 10px;
+  font-weight: 900;
 `;
 
 export default AddTask;

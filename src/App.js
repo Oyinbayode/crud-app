@@ -1,10 +1,10 @@
 import React from "react";
-import AddTask from "./components/AddTask/AddTask";
+import AddList from "./components/AddList/AddList";
 
 function App() {
   return (
     <div>
-      <AddTask />
+      <AddList />
     </div>
   );
 }
