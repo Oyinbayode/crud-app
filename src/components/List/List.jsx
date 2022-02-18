@@ -8,10 +8,10 @@ const List = ({ list, onDelete, onEdit }) => {
       <ListContainer>
         <div>
           <ListTitle>
-            <Span>Title:</Span> {list.text}
+            <Span>Title:</Span> <br /> {list.Title}
           </ListTitle>
           <ListBody>
-            <Span>Date of Completion:</Span>
+            <Span>Body:</Span> <br /> {list.Body}
           </ListBody>
         </div>
         <div>

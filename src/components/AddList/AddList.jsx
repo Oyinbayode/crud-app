@@ -11,7 +11,7 @@ const schema = yup
   })
   .required();
 
-const AddTask = () => {
+const AddList = ({ onSave }) => {
   const [title, setTitle] = useState("");
   const [body, setBody] = useState("");
 
@@ -26,7 +26,7 @@ const AddTask = () => {
   });
 
   const onSubmit = (data) => {
-    console.log(watch(data));
+    onSave(data);
     reset();
   };
 
@@ -46,7 +46,7 @@ const AddTask = () => {
         <InputButton
           type="submit"
           className="btn btn-block"
-          value="Save Task"
+          value="Save List"
         />
       </Form>
     </>
@@ -99,4 +99,4 @@ const P = styled.p`
   font-weight: 900;
 `;
 
-export default AddTask;
+export default AddList;
