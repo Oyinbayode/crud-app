@@ -30,14 +30,16 @@ function App() {
 
   // Add List
   const addList = (list) => {
-    axios
-      .get("https://jsonplaceholder.typicode.com/posts")
-      .then((res) => console.log(res))
-      .catch((err) => console.log(err));
-
-    const id = uuid();
-    const newList = { id, ...list };
+    const userId = uuid();
+    const newList = { userId, ...list };
     setLists([...lists, newList]);
+
+    axios
+      .post("https://jsonplaceholder.typicode.com/posts", {
+        ...newList,
+      })
+      .then((res) => console.log(res));
+
     Swal.fire({
       icon: "success",
       title: "Successful",
@@ -69,11 +71,16 @@ function App() {
           ...x,
           Title,
           Body,
-          id: uuid(),
+          userId: uuid(),
         };
       }
       return x;
     });
+
+    axios
+      .put(`https://jsonplaceholder.typicode.com/posts/${id}`)
+      .then((res) => console.log(res));
+
     Swal.fire({
       icon: "success",
       title: "Yay...",
